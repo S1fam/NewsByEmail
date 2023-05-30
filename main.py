@@ -1,12 +1,21 @@
 import requests
 from send_email import send_email
+from datetime import datetime
+
+now = datetime.now() # current date and time
+year = now.strftime("%Y")
+month = now.strftime("%m")
+day = now.strftime("%d")
+
+from_last_month = int(month) - 1
+
 
 topic = "tesla"
 api_key = "YOUR API KEY"  # os.getenv("API_KEY") not working :C
 language = "en"
 
 url = f"https://newsapi.org/v2/everything?q={topic}" \
-      f"&from=2023-04-28&sortBy=publishedAt&apiKey={api_key}&language={language}"
+      f"&from={year}-{from_last_month}-{day}&sortBy=publishedAt&apiKey={api_key}&language={language}"
 # parameters - main url, q=tesla, from=2023..., sortBy, apiKey, language
 
 # make request
